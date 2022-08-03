@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:padigos_finalexam/blocs/bloc/tasks_event.dart';
+import 'package:padigos_finalexam/blocs/tasks_bloc/tasks_event.dart';
 
 import '../blocs/bloc_exports.dart';
 import '../models/task.dart';
@@ -93,7 +93,6 @@ class _AddEditTaskState extends State<AddEditTask> {
                   onPressed: _title.isNotEmpty && _description.isNotEmpty
                       ? () {
                           var task = Task(
-                      
                             title: _title,
                             description: _description,
                           );

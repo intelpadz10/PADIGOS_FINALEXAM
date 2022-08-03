@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:padigos_finalexam/blocs/bloc/tasks_event.dart';
-import 'package:padigos_finalexam/models/task.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'app_router.dart';
@@ -27,15 +24,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TasksBloc(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'BloC Tasks App',
-        theme: AppThemes.appThemeData[AppTheme.lightMode],
-        home: const TabsScreen(),
-        onGenerateRoute: appRouter.onGenerateRoute,
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => TasksBloc()),
+        BlocProvider(create: (context) => SwitchBloc()),
+      ],
+      child: BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'BloC Tasks App',
+          theme: state.switchValue
+              ? AppThemes.appThemeData[AppTheme.darkMode]
+              : AppThemes.appThemeData[AppTheme.lightMode],
+          home: const TabsScreen(),
+          onGenerateRoute: appRouter.onGenerateRoute,
+        );
+      }),
     );
   }
 }
