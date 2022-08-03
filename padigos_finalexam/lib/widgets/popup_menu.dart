@@ -56,7 +56,7 @@ class PopupMenu extends StatelessWidget {
       PopupMenuItem(
         onTap: restoreTaskCallback,
         child: TextButton.icon(
-          onPressed: null,
+          onPressed: cancelOrDeleteCallback,
           icon: const Icon(Icons.restore_from_trash),
           label: const Text('Restore'),
         ),

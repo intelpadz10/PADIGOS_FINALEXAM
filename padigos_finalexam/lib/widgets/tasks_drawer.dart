@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:padigos_finalexam/blocs/bloc/tasks_state.dart';
 
+import '../blocs/bloc_exports.dart';
 import '../screens/recycle_bin_screen.dart';
 import '../screens/tabs_screen.dart';
 import '../test_data.dart';
@@ -26,37 +28,53 @@ class TasksDrawer extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline5,
               ),
             ),
-            ListTile(
-              leading: const Icon(Icons.folder_special),
-              title: const Text('My Tasks'),
-              trailing: Text(
-                '${TestData.pendingTasks.length} | ${TestData.completedTasks.length}',
-              ),
-              onTap: () => Navigator.pushReplacementNamed(
-                context,
-                TabsScreen.path,
-              ),
+            BlocBuilder<TasksBloc, TasksState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  child: ListTile(
+                    leading: const Icon(Icons.folder_special),
+                    title: const Text('My Tasks'),
+                    trailing: Text(
+                      '${TestData.pendingTasks.length} | ${TestData.completedTasks.length}',
+                    ),
+                    onTap: () => Navigator.pushReplacementNamed(
+                      context,
+                      TabsScreen.path,
+                    ),
+                  ),
+                );
+              },
             ),
             const Divider(),
-            ListTile(
-              leading: const Icon(Icons.delete),
-              title: const Text('Recycle Bin'),
-              trailing: Text('${TestData.removedTasks.length}'),
-              onTap: () => Navigator.pushReplacementNamed(
-                context,
-                RecycleBinScreen.path,
-              ),
-            ),
+            BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {
+              return GestureDetector(
+                child: ListTile(
+                  leading: const Icon(Icons.delete),
+                  title: const Text('Recycle Bin'),
+                  trailing: Text('${TestData.removedTasks.length}'),
+                  onTap: () => Navigator.pushReplacementNamed(
+                    context,
+                    RecycleBinScreen.path,
+                  ),
+                ),
+              );
+            }),
             const Divider(),
             const Expanded(child: SizedBox()),
-            ListTile(
-              leading: Switch(
-                value: TestData.isDarkTheme,
-                onChanged: (newValue) => _switchToDarkTheme(context, newValue),
-              ),
-              title: const Text('Switch to Dark Theme'),
-              onTap: () => _switchToDarkTheme(context, !TestData.isDarkTheme),
-            ),
+            BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {
+              return GestureDetector(
+                child: ListTile(
+                  leading: Switch(
+                    value: TestData.isDarkTheme,
+                    onChanged: (newValue) =>
+                        _switchToDarkTheme(context, newValue),
+                  ),
+                  title: const Text('Switch to Dark Theme'),
+                  onTap: () =>
+                      _switchToDarkTheme(context, !TestData.isDarkTheme),
+                ),
+              );
+            }),
             const SizedBox(height: 10),
           ],
         ),
