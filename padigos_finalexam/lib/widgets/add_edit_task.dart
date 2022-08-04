@@ -93,6 +93,7 @@ class _AddEditTaskState extends State<AddEditTask> {
                   onPressed: _title.isNotEmpty && _description.isNotEmpty
                       ? () {
                           var task = Task(
+                      
                             title: _title,
                             description: _description,
                           );
