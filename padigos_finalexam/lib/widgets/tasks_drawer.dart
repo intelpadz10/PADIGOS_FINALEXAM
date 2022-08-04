@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:padigos_finalexam/blocs/bloc/tasks_state.dart';
+import 'package:padigos_finalexam/blocs/tasks_bloc/tasks_state.dart';
 
 import '../blocs/bloc_exports.dart';
 import '../screens/recycle_bin_screen.dart';
@@ -61,18 +61,17 @@ class TasksDrawer extends StatelessWidget {
             }),
             const Divider(),
             const Expanded(child: SizedBox()),
-            BlocBuilder<TasksBloc, TasksState>(builder: (context, state) {
-              return GestureDetector(
-                child: ListTile(
-                  leading: Switch(
-                    value: TestData.isDarkTheme,
-                    onChanged: (newValue) =>
-                        _switchToDarkTheme(context, newValue),
-                  ),
-                  title: const Text('Switch to Dark Theme'),
-                  onTap: () =>
-                      _switchToDarkTheme(context, !TestData.isDarkTheme),
-                ),
+            BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
+              return ListTile(
+                leading: Switch(
+                    value: state.switchValue,
+                    onChanged: (newValue) {
+                      newValue
+                          ? context.read<SwitchBloc>().add(SwitchOnEvent())
+                          : context.read<SwitchBloc>().add(SwitchOffEvent());
+                    }),
+                title: const Text('Switch to Dark Theme'),
+                onTap: () => _switchToDarkTheme(context, !TestData.isDarkTheme),
               );
             }),
             const SizedBox(height: 10),

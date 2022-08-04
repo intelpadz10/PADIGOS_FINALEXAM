@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:padigos_finalexam/blocs/bloc/tasks_event.dart';
-import 'package:padigos_finalexam/blocs/bloc/tasks_state.dart';
+import 'package:padigos_finalexam/blocs/tasks_bloc/tasks_event.dart';
+import 'package:padigos_finalexam/blocs/tasks_bloc/tasks_state.dart';
 import 'package:padigos_finalexam/models/task.dart';
 
 class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
