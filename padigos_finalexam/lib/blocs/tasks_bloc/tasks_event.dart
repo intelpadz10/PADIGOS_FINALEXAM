@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:padigos_finalexam/models/task.dart';
+part of 'tasks_bloc.dart';
 
 abstract class TasksEvent extends Equatable {
   const TasksEvent();

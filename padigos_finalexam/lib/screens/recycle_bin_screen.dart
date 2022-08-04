@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:padigos_finalexam/blocs/tasks_bloc/tasks_state.dart';
-
 import '../blocs/bloc_exports.dart';
-import '../models/task.dart';
 import '../widgets/tasks_drawer.dart';
 import '../widgets/tasks_list.dart';
 
