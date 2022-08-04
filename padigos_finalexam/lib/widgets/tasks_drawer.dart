@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:padigos_finalexam/blocs/tasks_bloc/tasks_state.dart';
-
 import '../blocs/bloc_exports.dart';
 import '../screens/recycle_bin_screen.dart';
 import '../screens/tabs_screen.dart';
@@ -35,7 +33,7 @@ class TasksDrawer extends StatelessWidget {
                     leading: const Icon(Icons.folder_special),
                     title: const Text('My Tasks'),
                     trailing: Text(
-                      '${TestData.pendingTasks.length} | ${TestData.completedTasks.length}',
+                      '${state.pendingTasks.length} | ${state.completedTasks.length}',
                     ),
                     onTap: () => Navigator.pushReplacementNamed(
                       context,
