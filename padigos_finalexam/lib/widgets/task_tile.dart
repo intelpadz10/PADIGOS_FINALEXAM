@@ -87,8 +87,9 @@ class TaskTile extends StatelessWidget {
                   .read<TasksBloc>()
                   .add(MarkFavoriteOrUnfavoriteTask(task: task)),
               cancelOrDeleteCallback: () => _removeOrDeleteTask(context, task),
-              restoreTaskCallback: () => {},
-            ),
+              restoreTaskCallback: () =>
+                  context.read<TasksBloc>().add(RestoreTask(task: task)),
+            ), 
           ],
         ),
       ],
