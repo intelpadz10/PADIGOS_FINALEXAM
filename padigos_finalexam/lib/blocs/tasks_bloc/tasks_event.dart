@@ -64,7 +64,6 @@ class EditTask extends TasksEvent {
   const EditTask({
     required this.oldTask,
     required this.newTask,
-    required Task task,
   });
 
   @override
